@@ -1,0 +1,25 @@
+version: '3'
+services:
+  php:
+    image: yiisoftware/yii2-php:7.3-fpm
+    volumes:
+      - "phpsocket:/var/run"
+  nginx:
+    image: nginx:latest
+    depends_on:
+      - php
+    ports:
+      - "8500:80"
+    volumes:
+      - "phpsocket:/var/run"
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: roo
+      MYSQL_DATABASE: new_base
+    ports:
+      - 3308:3306
+volumes:
+  phpsocket:
+  db:
