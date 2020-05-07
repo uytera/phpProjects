@@ -28,16 +28,13 @@ services:
       - ./runtime/logs/nginx:/var/log/nginx:delegated
       - "phpsocket:/var/run"
   db:
-    image: mysql:5.7
-    restart: always
+    image: mariadb:10.3
     ports:
-      - 3308:3306
+      - 3306:3306
     volumes:
       - db:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: new_base
-
 volumes:
   phpsocket:
   db:
