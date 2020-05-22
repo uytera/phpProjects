@@ -126,6 +126,15 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+    /**
+     * Displays add page.
+     *
+     * @return string
+     */
+    public function actionAdd()
+    {
+        return $this->render('add');
+    }
     
     /**
      * Displays weather page.

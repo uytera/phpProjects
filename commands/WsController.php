@@ -48,7 +48,7 @@ class WsController extends Controller
     public function actionRun(){
         Loop::run(function (): Promise {
             $sockets = [
-                SocketServer::listen('0.0.0.0:1337'),
+                SocketServer::listen('0.0.0.0:1337')
             ];
 
             $router = new Router;
