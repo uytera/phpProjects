@@ -134,11 +134,6 @@ class SiteController extends Controller
      */
     public function actionWeather()
     {
-        $info = file_get_contents("https://api.weatherbit.io/v2.0/current?city=Paris&key=7ad40a66bb224e9d9338823380f8d6c2");
-        $info = json_decode($info, true);
-        $temp = $info['data'][0]['temp'];
-        $wind = $info['data'][0]['wind_spd'];
-        Weather::AddWeather('Paris', $temp, $wind);
         return $this->render('weather', ['model' => new Weather()]);
     }
 }

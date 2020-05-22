@@ -12,7 +12,7 @@ services:
       - ./:/var/www
       - "phpsocket:/var/run"
     ports:
-      - "8000:80"
+      - "1337:1337"
     environment:
       - TZ="Asia/Yekaterinburg"
   nginx:

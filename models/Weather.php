@@ -49,7 +49,7 @@ class Weather extends \yii\db\ActiveRecord
 
     public static function GetCityWeatherList($city){
         return self::findAll([
-            'city' => $city,
+            'temp' => $city,
         ]);
     }
 

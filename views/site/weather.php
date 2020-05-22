@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         This is the Weather page.
     </p>
-    <?php $rows = $model::GetCityWeatherList('Paris');
+    <?php $rows = $model::find()->all();
     foreach ($rows as $row): ?>
         <p>Время: <?php echo $row->time; ?> | Город: <?php echo $row->city; ?> | Температура: <?php echo $row->temp; ?>° | Ветер: <?php echo $row->wind; ?>м/с</p>
     <?php endforeach; ?>
