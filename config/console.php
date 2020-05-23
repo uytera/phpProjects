@@ -32,12 +32,7 @@ $config = [
             'class' => DbManager::class,
         ]
     ],
-    'params' => $params,
-    'controllerMap' => [
-        'show' => [
-            'class' => 'app\modules\telemetry\controllers\ShowController',
-        ],
-    ],
+    'params' => $params
 ];
 
 if (YII_ENV_DEV) {
@@ -45,6 +40,9 @@ if (YII_ENV_DEV) {
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
+    ];
+    $config['modules']['webSocket'] = [
+        'class' => 'app\modules\webSocket\Module',
     ];
 }
 return $config;

@@ -1,13 +1,11 @@
 <?php
+namespace app\modules\webSocket\controllers;
 
-
-namespace app\commands;
-
+use Amp\Http\Server\RequestHandler\CallableRequestHandler;
+use Amp\Http\Status;
 use Amp\Loop;
-use Amp\Socket\SocketException;
 use Amp\Websocket\Server\Websocket;
-use app\models\Telemetry;
-use wsHandler;
+use app\modules\telemetry\models\Telemetry;
 use yii\console\Controller;
 use Amp\Http\Server\HttpServer;
 use Amp\Http\Server\Router;
@@ -53,7 +51,8 @@ class WsController extends Controller
 
             $router = new Router;
             $router->addRoute('GET', '/broadcast', $this->ws);
-            $router->setFallback(new DocumentRoot(__DIR__ . '/../web/public'));
+            //$router->addRoute('GET', '/', new DocumentRoot(__DIR__ . '/../views/ws/'));
+            //$router->setFallback(new DocumentRoot(__DIR__ . '/../views/ws/'));
 
             $logHandler = new StreamHandler(getStdout());
             $logHandler->setFormatter(new ConsoleFormatter);
