@@ -6,7 +6,7 @@ namespace app\commands;
 use Amp\Loop;
 use Amp\Socket\SocketException;
 use Amp\Websocket\Server\Websocket;
-use app\models\Weather;
+use app\models\Telemetry;
 use wsHandler;
 use yii\console\Controller;
 use Amp\Http\Server\HttpServer;
@@ -91,11 +91,7 @@ class wsHandlerV2 implements ClientHandler
         return call(function () use ($endpoint, $client): \Generator {
             while ($message = yield $client->receive()) {
                 assert($message instanceof Message);
-                $info = file_get_contents("https://api.weatherbit.io/v2.0/current?city=".urlencode(yield $message->buffer())."&key=7ad40a66bb224e9d9338823380f8d6c2");
-                $info = json_decode($info, true);
-                $temp = $info['data'][0]['temp'];
-                $wind = $info['data'][0]['wind_spd'];
-                Weather::AddWeather(urlencode(yield $message->buffer()), $temp, $wind);
+                Telemetry::AddTelemetry(urlencode(yield $message->buffer()));
                 $endpoint->broadcast(sprintf('%d: %s', $client->getId(), yield $message->buffer()));
             }
         });

@@ -86,7 +86,6 @@
     var list = document.getElementById("messages");
     var input = document.querySelector('input[name=message]');
 
-    // append all received messages to #messages
     ws.addEventListener("message", function(e) {
         console.log(e.data);
 

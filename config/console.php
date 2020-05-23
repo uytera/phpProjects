@@ -33,13 +33,11 @@ $config = [
         ]
     ],
     'params' => $params,
-    /*
     'controllerMap' => [
-        'fixture' => [ // Fixture generation command line.
-            'class' => 'yii\faker\FixtureController',
+        'show' => [
+            'class' => 'app\modules\telemetry\controllers\ShowController',
         ],
     ],
-    */
 ];
 
 if (YII_ENV_DEV) {
@@ -49,5 +47,4 @@ if (YII_ENV_DEV) {
         'class' => 'yii\gii\Module',
     ];
 }
-
 return $config;

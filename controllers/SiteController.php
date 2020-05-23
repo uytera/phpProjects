@@ -2,7 +2,7 @@
 
 namespace app\controllers;
 
-use app\models\Weather;
+use app\models\Telemetry;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -134,15 +134,5 @@ class SiteController extends Controller
     public function actionAdd()
     {
         return $this->render('add');
-    }
-    
-    /**
-     * Displays weather page.
-     *
-     * @return string
-     */
-    public function actionWeather()
-    {
-        return $this->render('weather', ['model' => new Weather()]);
     }
 }

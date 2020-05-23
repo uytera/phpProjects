@@ -39,7 +39,7 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'ListWeather', 'url' => ['/site/weather']],
+            ['label' => 'ListTelemetry', 'url' => ['/telemetry/show/list']],
             ['label' => 'FindWeather', 'url' => ['/site/add']],
             ['label' => 'About', 'url' => ['/site/about']],
             ['label' => 'Contact', 'url' => ['/site/contact']],

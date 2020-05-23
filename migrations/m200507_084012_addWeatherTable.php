@@ -12,12 +12,10 @@ class m200507_084012_addWeatherTable extends Migration
      */
     public function safeUp()
     {
-        $this->createTable('weather', [
+        $this->createTable('telemetry', [
             'id' => $this->primaryKey(),
             'time' => $this->string(),
-            'city' => $this->string(),
-            'temp' => $this->string(),
-            'wind' => $this->string()
+            'telemetry' => $this->string(),
         ]);
     }
 
@@ -26,7 +24,7 @@ class m200507_084012_addWeatherTable extends Migration
      */
     public function safeDown()
     {
-        $this->dropTable('weather');
+        $this->dropTable('telemetry');
     }
 
     /*

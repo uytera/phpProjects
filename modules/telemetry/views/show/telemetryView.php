@@ -1,20 +1,20 @@
 <?php
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Weather */
+/* @var $model app\modules\telemetry\models\Telemetry*/
 use yii\helpers\Html;
 
-$this->title = 'Weather';
+$this->title = 'Telemetry';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="weather">
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        This is the Weather page.
+        This is the Telemetry page.
     </p>
     <?php $rows = $model::find()->all();
     foreach ($rows as $row): ?>
-        <p>Время: <?php echo $row->time; ?> | Город: <?php echo $row->city; ?> | Температура: <?php echo $row->temp; ?>° | Ветер: <?php echo $row->wind; ?>м/с</p>
+        <p>Время: <?php echo $row->time; ?> | Телеметрия: <?php echo $row->telemetry; ?></p>
     <?php endforeach; ?>
 </div>
