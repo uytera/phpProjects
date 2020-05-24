@@ -6,7 +6,8 @@ use yii\web\AssetBundle;
 
 class TelemetryAsset extends AssetBundle
 {
-    public $basePath = 'app\modules\webSocket\assets';
+    public $sourcePath = '@app/modules/webSocket/assets/';
+    public $baseUrl = 'assets/list/';
     public $js = [
         'khodavandgar.js'
     ];

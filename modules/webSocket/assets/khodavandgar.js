@@ -1,4 +1,3 @@
-$(document).ready(function() {
     console.log("I'm fine");
 
     var ws = new WebSocket("ws://localhost:1337/broadcast");
@@ -28,4 +27,3 @@ $(document).ready(function() {
             e.target.focus();
         }
     });
-});

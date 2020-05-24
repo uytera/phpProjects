@@ -40,7 +40,7 @@ class WsController extends Controller
     public  function  init()
     {
         parent::init();
-        $this -> ws = new Websocket(new wsHandlerV2());
+        $this -> ws = new Websocket(new wsHandler());
     }
 
     public function actionRun(){
@@ -51,7 +51,7 @@ class WsController extends Controller
 
             $router = new Router;
             $router->addRoute('GET', '/broadcast', $this->ws);
-            //$router->addRoute('GET', '/', new DocumentRoot(__DIR__ . '/../views/ws/'));
+            //$router->addRoute('GET', '/', new DocumentRoot(__DIR__ . '@web/public'));
             //$router->setFallback(new DocumentRoot(__DIR__ . '/../views/ws/'));
 
             $logHandler = new StreamHandler(getStdout());
@@ -68,7 +68,7 @@ class WsController extends Controller
     }
 }
 
-class wsHandlerV2 implements ClientHandler
+class wsHandler implements ClientHandler
 {
 
     private const ALLOWED_ORIGINS = [
@@ -78,9 +78,10 @@ class wsHandlerV2 implements ClientHandler
 
     public function handleHandshake(Endpoint $endpoint, Request $request, Response $response): Promise
     {
-        if (!\in_array($request->getHeader('origin'), self::ALLOWED_ORIGINS, true)) {
+        /*if (!\in_array($request->getHeader('origin'), self::ALLOWED_ORIGINS, true)) {
+            echo $request->getHeader('origin');
             return $endpoint->getErrorHandler()->handleError(403);
-        }
+        }*/
 
         return new Success($response);
     }
@@ -90,7 +91,7 @@ class wsHandlerV2 implements ClientHandler
         return call(function () use ($endpoint, $client): \Generator {
             while ($message = yield $client->receive()) {
                 assert($message instanceof Message);
-                Telemetry::AddTelemetry(urlencode(yield $message->buffer()));
+                Telemetry::AddTelemetry(yield $message->buffer());
                 $endpoint->broadcast(sprintf('%d: %s', $client->getId(), yield $message->buffer()));
             }
         });
