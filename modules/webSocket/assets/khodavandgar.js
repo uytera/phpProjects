@@ -21,7 +21,10 @@
     input.addEventListener('keyup', function (e) {
         if (e.keyCode === 13) {
             e.preventDefault();
-
+            if(e.target.value.length < 1){
+                alert("Empty value");
+                return;
+            }
             ws.send(e.target.value);
             e.target.value = "";
             e.target.focus();

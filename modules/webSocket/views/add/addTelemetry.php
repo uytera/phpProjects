@@ -1,7 +1,14 @@
 <?php
-    use app\modules\webSocket\assets\TelemetryAsset;
-    TelemetryAsset::register($this);
-    //$this->registerJsFile('../modules/webSocket/assets/khodavandgar.js');
+
+/* @var $this yii\web\View */
+/* @var $form yii\bootstrap\ActiveForm */
+/* @var $model app\modules\users\models\LoginForm; */
+
+use app\modules\webSocket\assets\TelemetryAsset;
+TelemetryAsset::register($this);
+
+$this->title = 'AddTelemetry';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,11 +17,12 @@
     <title>Broadcast Example</title>
     <style>
         * { padding: 0; margin: 0; box-sizing: border-box; }
-        body { font-size: 14px; font-family: sans-serif; display: flex; height: 100vh; flex-direction: column; box-sizing: border-box; padding: 50px; }
+        body { font-size: 14px; font-family: sans-serif; display: flex; height: 100vh; flex-direction: column; box-sizing: border-box;}
 
         input[type=text] {
             line-height: 34px;
             height: 34px;
+            width: 100%;
             border: 2px solid #ccc;
             background: white;
             border-radius: 4px;
@@ -35,7 +43,7 @@
             display: block;
             padding-left: 0;
             width: 100%;
-            margin: 0 auto;
+            margin: 20px auto;
         }
 
         #messages li {
@@ -81,9 +89,9 @@
     </style>
 </head>
 <body>
+<h1>Input your telemetry</h1>
+<input min="1" type="text" name="message">
 <ul id="messages"></ul>
-<h1>Введите телеметрию</h1>
-<input type="text" name="message">
 </body>
 <script src=""></script>
 </html>

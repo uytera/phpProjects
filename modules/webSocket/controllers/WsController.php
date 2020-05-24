@@ -73,15 +73,16 @@ class wsHandler implements ClientHandler
 
     private const ALLOWED_ORIGINS = [
         'http://localhost:1337',
+        'http://localhost:8500',
         'http://0.0.0.0:1337',
     ];
 
     public function handleHandshake(Endpoint $endpoint, Request $request, Response $response): Promise
     {
-        /*if (!\in_array($request->getHeader('origin'), self::ALLOWED_ORIGINS, true)) {
+        if (!\in_array($request->getHeader('origin'), self::ALLOWED_ORIGINS, true)) {
             echo $request->getHeader('origin');
             return $endpoint->getErrorHandler()->handleError(403);
-        }*/
+        }
 
         return new Success($response);
     }
