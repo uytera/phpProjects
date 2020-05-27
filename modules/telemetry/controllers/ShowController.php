@@ -1,7 +1,7 @@
 <?php
 namespace app\modules\telemetry\controllers;
 
-use app\modules\telemetry\models\Telemetry;
+use app\models\Telemetry;
 use yii\web\Controller;
 
 class ShowController extends Controller
@@ -13,6 +13,8 @@ class ShowController extends Controller
      */
     public function actionList()
     {
-        return $this->render('telemetryView', ['model' => new Telemetry()]);
+        $model = new Telemetry();
+        $rows = $model::find()->all();
+        return $this->render('telemetryView', ['rows' => $rows]);
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 /* @var $this yii\web\View */
-/* @var $model app\modules\telemetry\models\Telemetry*/
+/* @var $rows app\models\Telemetry*/
 use yii\helpers\Html;
 
 $this->title = 'Telemetry';
@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         This is the Telemetry page.
     </p>
-    <?php $rows = $model::find()->all();
+    <?php
     foreach ($rows as $row): ?>
         <p>Время: <?php echo $row->time; ?> | Телеметрия: <?php echo $row->telemetry; ?></p>
     <?php endforeach; ?>

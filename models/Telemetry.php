@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\telemetry\models;
+namespace app\models;
 
 /**
  * This is the model class for table "telemetry".
@@ -26,6 +26,7 @@ class Telemetry extends \yii\db\ActiveRecord
         return [
             [['telemetry'], 'string', 'max' => 255],
         ];
+        //$rows = $model::find()->all();
     }
     /**
      * {@inheritdoc}
@@ -37,13 +38,5 @@ class Telemetry extends \yii\db\ActiveRecord
             'time' => 'Time',
             'telemetry' => 'Telemetry',
         ];
-    }
-
-    public static function AddTelemetry($telemetry){
-        $currentW = new Telemetry();
-        $currentW->id = null;
-        $currentW->time = date("l dS of F Y h:I:s A");
-        $currentW->telemetry = $telemetry;
-        $currentW->save(false);
     }
 }
