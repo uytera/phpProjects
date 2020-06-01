@@ -17,6 +17,10 @@ $config = [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'UUe4gB3PFfnXMrVCMYj3yuskxf_G-6MQ',
+            'parsers' => [
+                'multipart/form-data' => 'yii\web\MultipartFormDataParser',
+                'application/json' => 'yii\web\JsonParser',
+            ],
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -47,17 +51,22 @@ $config = [
         'db' => $db,
         'authManager' => [
             'class' => DbManager::class,
-        ]
-        /*
+        ],
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                ['class' => \yii\rest\UrlRule::class, 'controller' => 'api/telemetry']
             ],
         ],
-        */
     ],
     'params' => $params,
+
+    'modules' => [
+        'api' => [
+            'class' => app\modules\api\Module::class,
+        ],
+    ]
 ];
 
 if (YII_ENV_DEV) {
@@ -83,6 +92,9 @@ if (YII_ENV_DEV) {
     ];
     $config['modules']['webSocket'] = [
         'class' => 'app\modules\webSocket\Module',
+    ];
+    $config['modules']['api'] = [
+        'class' => app\modules\api\Module::class,
     ];
 }
 

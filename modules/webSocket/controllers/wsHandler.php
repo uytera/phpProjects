@@ -41,7 +41,6 @@ class wsHandler implements ClientHandler
                 assert($message instanceof Message);
                 $currentW = new Telemetry();
                 $currentW->id = null;
-                $currentW->time = date("l dS of F Y h:I:s A");
                 $currentW->telemetry = yield $message->buffer();
                 $currentW->save(false);
                 $endpoint->broadcast(sprintf('%d: %s', $client->getId(), yield $message->buffer()));

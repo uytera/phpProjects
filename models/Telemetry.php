@@ -10,6 +10,15 @@ namespace app\models;
  */
 class Telemetry extends \yii\db\ActiveRecord
 {
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+            $this->time = date("l dS of F Y h:I:s A");
+            return true;
+        }
+        return false;
+    }
+
     /**
      * {@inheritdoc}
      */

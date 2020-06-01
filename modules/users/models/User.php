@@ -12,6 +12,7 @@ use yii\web\IdentityInterface;
  * @property int $id
  * @property string|null $login
  * @property string|null $password
+ * @property string|null $accessToken
  */
 class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
@@ -21,6 +22,17 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public static function tableName()
     {
         return 'users';
+    }
+
+    public function beforeSave($insert)
+    {
+        $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyz';
+
+        if (parent::beforeSave($insert)) {
+            $this->accessToken = substr(str_shuffle($permitted_chars), 0, 10);
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -43,6 +55,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             'id' => 'ID',
             'login' => 'Login',
             'password' => 'Password',
+            'accessToken' => 'accessToken',
         ];
     }
 
@@ -74,7 +87,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        throw new RuntimeException('Not implement');
+        return self::findOne(['users.accessToken' => $token]);
     }
 
     /**

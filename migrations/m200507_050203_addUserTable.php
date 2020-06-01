@@ -13,9 +13,10 @@ class m200507_050203_addUserTable extends Migration
     public function safeUp()
     {
         $this->createTable('users', [
-           'id' => $this->primaryKey(),
+            'id' => $this->primaryKey(),
             'login' => $this->string(),
-            'password' => $this->string()
+            'password' => $this->string(),
+            'accessToken' => $this->string(),
         ]);
     }
 
