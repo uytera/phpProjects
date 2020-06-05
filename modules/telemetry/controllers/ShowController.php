@@ -13,8 +13,10 @@ class ShowController extends Controller
      */
     public function actionList()
     {
-        $model = new Telemetry();
-        $rows = $model::find()->all();
-        return $this->render('telemetryView', ['rows' => $rows]);
+        $dataProvider = new \yii\data\ActiveDataProvider([
+            'query' => \app\models\Telemetry::find()
+        ]);
+
+        return $this->render('telemetryView', ['rows' => $dataProvider]);
     }
 }

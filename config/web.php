@@ -66,6 +66,15 @@ $config = [
         'api' => [
             'class' => app\modules\api\Module::class,
         ],
+        'telemetry' => [
+            'class' => app\modules\telemetry\Module::class,
+        ],
+        'users' => [
+            'class' => app\modules\users\Module::class,
+        ],
+        'webSocket' => [
+            'class' => app\modules\webSocket\Module::class,
+        ],
     ]
 ];
 
@@ -84,18 +93,18 @@ if (YII_ENV_DEV) {
         // uncomment the following to add your IP if you are not connecting from localhost.
         //'allowedIPs' => ['127.0.0.1', '::1'],
     ];
-    $config['modules']['telemetry'] = [
-        'class' => 'app\modules\telemetry\Module',
-    ];
-    $config['modules']['users'] = [
-        'class' => 'app\modules\users\Module',
-    ];
-    $config['modules']['webSocket'] = [
-        'class' => 'app\modules\webSocket\Module',
-    ];
-    $config['modules']['api'] = [
-        'class' => app\modules\api\Module::class,
-    ];
+//    $config['modules']['telemetry'] = [
+//        'class' => 'app\modules\telemetry\Module',
+//    ];
+//    $config['modules']['users'] = [
+//        'class' => 'app\modules\users\Module',
+//    ];
+//    $config['modules']['webSocket'] = [
+//        'class' => 'app\modules\webSocket\Module',
+//    ];
+//    $config['modules']['api'] = [
+//        'class' => app\modules\api\Module::class,
+//    ];
 }
 
 return $config;

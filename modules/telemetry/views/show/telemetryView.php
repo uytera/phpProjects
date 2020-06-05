@@ -1,7 +1,9 @@
 <?php
 
 /* @var $this yii\web\View */
-/* @var $rows app\models\Telemetry*/
+/* @var \yii\debug\models\timeline\DataProvider $rows */
+
+use yii\grid\GridView;
 use yii\helpers\Html;
 
 $this->title = 'Telemetry';
@@ -14,7 +16,9 @@ $this->params['breadcrumbs'][] = $this->title;
         This is the Telemetry page.
     </p>
     <?php
-    foreach ($rows as $row): ?>
-        <p>Время: <?php echo $row->time; ?> | Телеметрия: <?php echo $row->telemetry; ?></p>
-    <?php endforeach; ?>
+
+    echo GridView::widget([
+        'dataProvider' => $rows,
+    ]);
+    ?>
 </div>
