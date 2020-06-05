@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\users\models;
+namespace app\models;
 
 use Symfony\Component\Console\Exception\RuntimeException;
 use Yii;

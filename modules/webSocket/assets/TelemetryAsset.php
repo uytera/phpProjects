@@ -8,6 +8,9 @@ class TelemetryAsset extends AssetBundle
 {
     public $sourcePath = '@app/modules/webSocket/assets/';
     public $js = [
-        'khodavandgar.js'
+        'list.js'
+    ];
+    public $css = [
+        'list.css'
     ];
 }
