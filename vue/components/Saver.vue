@@ -26,18 +26,6 @@
                 })
                     .then(response => (this.info = response))
                     .catch(error => console.log(error));
-                // axios({
-                //     method: "post",
-                //     url: "/api/telemetry/create",
-                //     body: {"telemetry":"secondregergewfwef"},
-                //     headers: {
-                //         'Authorization' : 'Bearer ef8724dmsr'
-                //     }
-                // })
-                //     .then(response => (this.info = response))
-                //     .catch(error => console.log(error));
-                // axios.get("/api/telemetry")
-                //    .then(response => (this.info = response));
             }
         }
     }
