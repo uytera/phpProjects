@@ -10,6 +10,9 @@ TelemetryAsset::register($this);
 $this->title = 'AddTelemetry';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<h1>Input your telemetry</h1>
+<div id="app">
+    Загрузка....
+</div>
+<h1>Input your telemetry(Socket)</h1>
 <input min="1" type="text" name="message">
 <ul id="messages"></ul>
