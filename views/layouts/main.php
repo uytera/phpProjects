@@ -44,6 +44,7 @@ VueAsset::register($this);
             ['label' => 'Home', 'url' => ['/site/index']],
             ['label' => 'ListTelemetry', 'url' => ['/telemetry/show/list']],
             ['label' => 'AddTelemetry', 'url' => ['/webSocket/add/show']],
+            ['label' => 'Admin', 'url' => ['/admin/admin/show']],
             ['label' => 'About', 'url' => ['/site/about']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
             Yii::$app->user->isGuest ? (

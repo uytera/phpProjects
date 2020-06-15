@@ -75,6 +75,9 @@ $config = [
         'webSocket' => [
             'class' => app\modules\webSocket\Module::class,
         ],
+        'admin' => [
+            'class' => app\modules\admin\Module::class,
+        ],
     ]
 ];
 

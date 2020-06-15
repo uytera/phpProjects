@@ -3,6 +3,7 @@ namespace app\modules\telemetry\controllers;
 
 use app\models\Telemetry;
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 
 class ShowController extends Controller
 {
@@ -10,6 +11,7 @@ class ShowController extends Controller
      * Displays telemetry page.
      *
      * @return string
+     * @throws ForbiddenHttpException
      */
     public function actionList()
     {

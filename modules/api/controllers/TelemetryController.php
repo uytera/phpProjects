@@ -64,7 +64,6 @@ class TelemetryController extends \yii\rest\Controller
                 Yii::$app->response->setStatusCode(201);
             }
         }
-
         return $telemetry;
     }
 }

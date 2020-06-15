@@ -13,6 +13,7 @@ use yii\web\IdentityInterface;
  * @property string|null $login
  * @property string|null $password
  * @property string|null $accessToken
+ * @property boolean|null $banned
  */
 class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
@@ -29,10 +30,23 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyz';
 
         if (parent::beforeSave($insert)) {
-            $this->accessToken = substr(str_shuffle($permitted_chars), 0, 10);
+            if ($insert) {
+                $this->banned = false;
+                $this->accessToken = substr(str_shuffle($permitted_chars), 0, 10);
+            }
             return true;
         }
         return false;
+    }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        if($insert) {
+            $auth = Yii::$app->authManager;
+            $editor = $auth->getRole('editor');
+            $auth->assign($editor, $this->id);
+            parent::afterSave($insert, $changedAttributes);
+        }
     }
 
     /**
@@ -56,6 +70,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             'login' => 'Login',
             'password' => 'Password',
             'accessToken' => 'accessToken',
+            'banned' => 'banned',
         ];
     }
 
@@ -134,7 +149,8 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         // TODO: Implement validateAuthKey() method.
     }
 
-    public function validatePassword($password){
+    public function validatePassword($password)
+    {
         return $this->password === $password;
     }
 }
