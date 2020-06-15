@@ -72,3 +72,7 @@ JSON параметр:
 Просмотр телеметрии через rest запросы (http://localhost:8500/api/telemetry)
 
 Проверка авторизации через access token
+
+Управление пользователями через админ форму (http://localhost:8500/admin/show)
+
+добавление пользователей по ссылке (http://localhost:8500/admin/add-user/show)
