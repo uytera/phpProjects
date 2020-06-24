@@ -13,6 +13,8 @@ use Amp\Websocket\Message;
 use Amp\Websocket\Server\ClientHandler;
 use Amp\Websocket\Server\Endpoint;
 use app\models\Telemetry;
+use Throwable;
+use yii\db\Exception;
 use function Amp\call;
 
 class wsHandler implements ClientHandler
@@ -38,12 +40,45 @@ class wsHandler implements ClientHandler
     {
         return call(function () use ($endpoint, $client): \Generator {
             while ($message = yield $client->receive()) {
-                assert($message instanceof Message);
-                $currentW = new Telemetry();
-                $currentW->id = null;
-                $currentW->telemetry = yield $message->buffer();
-                $currentW->save(false);
-                $endpoint->broadcast(sprintf('%d: %s', $client->getId(), yield $message->buffer()));
+                $msg = yield $message->buffer();
+
+                $data = json_decode($msg, true);
+                if (!array_key_exists('action', $data)) {
+                    $client->send(json_encode(['result' => 'error', 'data' => "wrong request"]));
+                    continue;
+                }
+
+                switch ($data['action']) {
+                    case 'put':
+                        try {
+                            if (array_key_exists('message', $data)) {
+                                $currentW = new Telemetry();
+                                $currentW->id = null;
+                                $currentW->telemetry = $data['message'];
+                                $currentW->save(false);
+                                $client->send(json_encode(['result' => 'ok', 'data' => $data['message']]));
+                            } else {
+                                $client->send(json_encode(['result' => 'error', 'data' => "wrong request"]));
+                            }
+                        } catch (Throwable $e) {
+                            $client->send(json_encode(['result' => 'error', 'data' => "wrong data"]));
+                        }
+                        break;
+                    case 'get':
+                        try {
+                            if (array_key_exists('id', $data)) {
+                                $telemetry = Telemetry::findOne($data['id']);
+                                $client->send(json_encode(['result' => 'ok', 'data' => $telemetry->telemetry]));
+                            } else {
+                                $client->send(json_encode(['result' => 'error', 'data' => "wrong request"]));
+                            }
+                        } catch (Throwable $e) {
+                            $client->send(json_encode(['result' => 'error', 'data' => "wrong data"]));
+                        }
+                        break;
+                    default:
+                        continue;
+                }
             }
         });
     }

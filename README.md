@@ -61,7 +61,8 @@ PHP 7.2.0.
 
 Авторизация пользователей через веб интерфейс
 
-Добавление телеметрии через веб интерфейс(http://localhost:8500/webSocket/add/show)   
+Добавление телеметрии через веб интерфейс(http://localhost:8500/webSocket/view/show-set)
+Получение телеметрии через веб интерфейс по id(http://localhost:8500/webSocket/view/show-get)     
 Добавление телеметрии через rest запросы (http://localhost:8500/api/telemetry/create, передаётся JSON с параметром: текстом телеметрии)
 
 JSON параметр:

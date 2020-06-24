@@ -38,8 +38,8 @@ class WsController extends Controller
             ];
 
             $router = new Router;
-            $router->addRoute('GET', '/broadcast', $this->ws);
-            $router->addRoute('GET', '/list', $this->ws);
+            $router->addRoute('GET', '/telemetry', $this->ws);
+            //$router->addRoute('GET', '/list', $this->ws);
 
             $logHandler = new StreamHandler(getStdout());
             $logHandler->setFormatter(new ConsoleFormatter);

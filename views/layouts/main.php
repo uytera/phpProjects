@@ -43,7 +43,8 @@ VueAsset::register($this);
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
             ['label' => 'ListTelemetry', 'url' => ['/telemetry/show/list']],
-            ['label' => 'AddTelemetry', 'url' => ['/webSocket/add/show']],
+            ['label' => 'AddTelemetry', 'url' => ['/webSocket/view/show-set']],
+            ['label' => 'GetTelemetryById', 'url' => ['/webSocket/view/show-get']],
             ['label' => 'Admin', 'url' => ['/admin/admin/show']],
             ['label' => 'About', 'url' => ['/site/about']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
